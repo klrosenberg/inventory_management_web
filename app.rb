@@ -34,13 +34,14 @@ get "/welcome" do
 end
 
 # -----------------------------------------------------------------------------
-# Updated database if product was added
+# Adds product to database.
 # -----------------------------------------------------------------------------
 get "/save" do
   if FloralDepartmentProduct.add({"product" => params['product'], "category_id" => params['category_id'], "cost" => params['cost'].to_i, "location_id" => params['location_id'], "quantity" => params['quantity'].to_i})
     erb :"/updated_database"
   else
-    "Error"
+    @error = true
+    erb :"/add_product"
   end
 end
 
@@ -54,28 +55,35 @@ end
 # -----------------------------------------------------------------------------
 # 
 # -----------------------------------------------------------------------------
-get "/update_product/:x" do
+get "/update_product" do
   erb :"/update_product"
-   @product = FloralDepartmentProduct.find(params["x"].to_i)
-   if @product.save
-     erb :"/updated_database"
-   else
-     "Error"
-   end
- end
+end
 
 # -----------------------------------------------------------------------------
 # 
 # -----------------------------------------------------------------------------
-get "/update_product/:x/save" do
-  @product = FloralDepartmentProduct.find_by(params["x"].to_i)
+get "/update_product/save" do
+  @product = FloralDepartmentProduct.find(params["id"].to_i)
   if @product.save
+    erb :"/updated_database"
+  else
+    erb :"/update_product"
+  end
+end
+
+# -----------------------------------------------------------------------------
+# 
+# -----------------------------------------------------------------------------
+get "/delete" do
+  @product = FloralDepartmentProduct.find(params["id"].to_i)
+  if @product.delete
     erb :"/updated_database"
   else
     "Error"
   end
 end
-  
+
+
 # -----------------------------------------------------------------------------
 # 
 # -----------------------------------------------------------------------------

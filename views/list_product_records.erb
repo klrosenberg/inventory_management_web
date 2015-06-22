@@ -14,9 +14,20 @@
   </center></h2>
   <h2><center></center></h2>
   <h3><ul style="list-style-type:none"><center>
+  <table>
+    <tr>
+      <td>Product</td>
+      <td>Price</td>
+      <td>Quantity</td>
+    </tr>
     <% FloralDepartmentProduct.all.each do |product| %>
-    <li><%= product.product %>: <%= product.quantity %> @ <%= product.cost %></a></li>
+      <tr>
+        <td><%= product.product%></td>
+        <td><%= product.cost%></td>
+        <td><%= product.quantity%></td>
+      </tr>
     <% end %>
+  </table>
   </center></ul></h3>
   
   <h4><center>Would you like to see products listed by category or location?</center></h4>

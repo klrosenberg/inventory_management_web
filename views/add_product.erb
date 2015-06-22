@@ -16,11 +16,13 @@
   <form action="/save"><center>
     <p><input type="text" placeholder="Product name" name="product"></p>
     <p><select name="category_id">
+      <option>Category</option>
       <% ProductCategory.all.each do |category| %>
       <option value="<%= category.id %>"><%= category.category_name %></option>
       <% end %>
     </select></p>
     <p><select name="location_id">
+      <option>Location</option>
       <% Location.all.each do |location| %>
       <option value="<%= location.id %>"><%= location.location_name %></option>
       <% end %>
