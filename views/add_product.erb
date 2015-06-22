@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Floral Department</title>
+</head>
+<body>
+  <h1>
+    <center>
+      Floral Department
+    </center>
+  </h1>
+  <h2><center>
+    <img src="http://4.bp.blogspot.com/-zpEHnnhl64g/UFrbSRLWxXI/AAAAAAAAAdk/1ZvmkOXN5z0/s1600/VintageFlowerBorder.png" width="600" height="210" /></a>
+  </center></h2>
+  <h2><center>Please fill out the form to add a new product to the database.</center></h2>
+  <form action="/save"><center>
+    <p><input type="text" placeholder="Product name"></p>
+    <p><select name="category_name">
+      <% ProductCategory.all.each do |object| %>
+      <option value="<%= object.id %>"><%= object.category_name %></option>
+      <% end %>
+    </select></p>
+    <p><select name="location_name">
+      <% Location.all.each do |object| %>
+      <option value="<%= object.id %>"><%= object.location_name %></option>
+      <% end %>
+    </select></p>
+    <p><center><input type="number" placeholder="Price"></center></p>
+    <p><center><input type="number" placeholder="Quantity"></center></p>
+    <p><center><input type"Submit"></center></p>
+  </form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Floral Department</title>
+</head>
+<body>
+  <h1>
+    <center>
+      Floral Department
+    </center>
+  </h1>
+  <h2><center>
+    <img src="http://4.bp.blogspot.com/-zpEHnnhl64g/UFrbSRLWxXI/AAAAAAAAAdk/1ZvmkOXN5z0/s1600/VintageFlowerBorder.png" width="600" height="210" /></a>
+  </center></h2>
+  <h2><center>Please select which product you would like to update.</center></h2>
+  <h3><ul style="list-style-type:none"><center>
+    <% FloralDepartmentProduct.all.each do |product| %>
+    <%= product.id %>: <%= product.name %>
+    <% end %>
+  </center></ul></h3>

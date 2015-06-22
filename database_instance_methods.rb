@@ -1,0 +1,18 @@
+require "active_support"
+require "active_support/inflector"
+
+module DatabaseInstanceMethods
+  
+  def save  
+    if DATABASE.execute("UPDATE prodcut_categories SET category_name = '#{category_name}' WHERE id = #{@id};")
+      return true
+    else
+      return false
+    end
+  end
+    
+  def delete
+     table_name = self.class.to_s.pluralize.underscore
+     DATABASE.execute("DELETE FROM #{table_name} WHERE id = #{@id};")
+  end
+end
