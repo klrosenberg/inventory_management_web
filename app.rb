@@ -24,18 +24,61 @@ require_relative "product_categories.rb"
 require_relative "floral_department_products.rb"
 require_relative "driver.rb"
 
+########################### Begin Web UX ######################################
+
+# -----------------------------------------------------------------------------
+# Menu
+# -----------------------------------------------------------------------------
 get "/welcome" do
   erb :"welcome"
 end
 
+# -----------------------------------------------------------------------------
+# Updated database if product was added
+# -----------------------------------------------------------------------------
 get "/save" do
-  @new_product = FloralDepartmentProduct.new(nil, "product" => params['product'], "category_id" => params['category_id'], "cost" => params['cost'].to_i, "location_id" => params['location_id'], "quantity" = params['quantity'].to_i)
-  if @new_product.save
+  if FloralDepartmentProduct.add({"product" => params['product'], "category_id" => params['category_id'], "cost" => params['cost'].to_i, "location_id" => params['location_id'], "quantity" => params['quantity'].to_i})
     erb :"/updated_database"
   else
     "Error"
+  end
 end
 
+# -----------------------------------------------------------------------------
+# List of existing products to select and edit
+# -----------------------------------------------------------------------------
+get "/existing_products" do
+  erb :"/existing_products"
+end
+
+# -----------------------------------------------------------------------------
+# 
+# -----------------------------------------------------------------------------
+get "/update_product/:x" do
+  erb :"/update_product"
+   @product = FloralDepartmentProduct.find(params["x"].to_i)
+   if @product.save
+     erb :"/updated_database"
+   else
+     "Error"
+   end
+ end
+
+# -----------------------------------------------------------------------------
+# 
+# -----------------------------------------------------------------------------
+get "/update_product/:x/save" do
+  @product = FloralDepartmentProduct.find_by(params["x"].to_i)
+  if @product.save
+    erb :"/updated_database"
+  else
+    "Error"
+  end
+end
+  
+# -----------------------------------------------------------------------------
+# 
+# -----------------------------------------------------------------------------
 get "/:something" do
   erb :"#{params["something"]}"
 end

@@ -3,6 +3,9 @@ require "active_support/inflector"
 
 module DatabaseClassMethods
   
+  # List and store all results from a specific table
+  #
+  # Returns results as an Array.
   def all
     table_name = self.to_s.tableize
     results = DATABASE.execute("SELECT * FROM #{table_name}")
@@ -13,12 +16,20 @@ module DatabaseClassMethods
     return store_results
   end
   
+  # Find a specific row from id.
+  #
+  # Returns new instance of the class.
   def find(options = {})
     table_name = self.class.to_s.tableize
-    results = DATABASE.execute("SELECT * FROM #{table_name} WHERE id = #{@id};").first
+    results = DATABASE.execute("SELECT * FROM #{table_name} WHERE id = #{id};").first
     self.new(results)
   end
   
+  # Add to a table.
+  # 
+  # options = {} - to be filled with key value pairs 
+  #
+  # Returns a new instance of the class and adds to database.
   def add(options = {})
     columns = options.keys
     values = options.values
@@ -39,6 +50,12 @@ module DatabaseClassMethods
     self.new(options)
   end
   
+  # Selects all rows of a table that share the same value of a specific column.
+  #
+  # column_name - String
+  # id - Integer
+  #
+  # Returns an Array of results.
   def where(column_name, id)
      table_name = self.to_s.pluralize.underscore
      column_name = 
