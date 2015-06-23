@@ -14,19 +14,19 @@
   </center></h2>
   <h2><center>Please change the necessary fields.</center></h2>
   <form action="/update_product/save"><center>
-    <p><input type="text" placeholder="Product name" value="<%= @product.product %>"></p>
-    <p><select name="category_name">>
+    <p><input type="text" placeholder="Product name" name="product" value="<%= @product.product %>"></p>
+    <p><select name="category_id">>
       <% ProductCategory.all.each do |object| %>
       <option value="<%= object.id %>" <%="selected" if object.id == @product.category_id%>><%= object.category_name %></option>
       <% end %>
     </select></p>
-    <p><select name="location_name">
+    <p><select name="location_id">
       <% Location.all.each do |object| %>
       <option value="<%= object.id %>"<%="selected" if object.id == @product.location_id%>><%= object.location_name %></option>
       <% end %>
     </select></p>
-    <p><center><input type="number" placeholder="Price" value="<%= @product.cost %>"></center></p>
-    <p><center><input type="number" placeholder="Quantity" value="<%= @product.quantity %>"></center></p>
+    <p><center><input type="number" placeholder="Price" name="cost" value="<%= @product.cost %>"></center></p>
+    <p><center><input type="number" placeholder="Quantity" name="quantity" value="<%= @product.quantity %>"></center></p>
     <p><center><input type="submit"></center></p>
 </body>
 </html>

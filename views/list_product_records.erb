@@ -31,20 +31,29 @@
   </center></ul></h3>
   
   <h4><center>Would you like to see products listed by category or location?</center></h4>
-    <form action="/list_by/:x"><center>
-      <p><select name="category_id">
-        <option>category</option>
-        <% ProductCategory.all.each do |category| %>
-        <option value="<%= category.id %>"><%= category.category_name %></option>
-        <% end %>
-      </select></p>
-      <p><select name="location_id">
-        <option>location</option>
-        <% Location.all.each do |location| %>
-        <option value="<%= location.id %>"><%= location.location_name %></option>
-        <% end %>
-      </select></p>
-      <p><center><input type="submit"></center></p>
+  <form action="/list_by"><center>
+    <table>
+      <tr>
+        <td>Product Category</td>
+      </tr>
+      <% ProductCategory.all.each do |category| %>
+        <tr>
+          <td><input type="radio" name="id" value="<%= category.id %>"><%= category.category_name%></td>
+        </tr>
+      <% end %>
+    </table>
+    <br>
+    <table>
+      <tr>
+        <td>Location</td>
+      </tr>
+      <% Location.all.each do |location| %>
+        <tr>
+          <td><input type="radio" name="id" value="<%= location.id %>"><%= location.location_name%></td>
+        </tr>
+      <% end %>
+    </table>
+    <p><center><input type="submit"></center></p>
     </center></form>
 </body>
 </html>

@@ -64,7 +64,14 @@ end
 # 
 # -----------------------------------------------------------------------------
 get "/update_product/save" do
-  if FloralDepartmentProduct.save
+  @product = FloralDepartmentProduct.find(params["id"].to_i)
+  @product.product = params["product"]
+  @product.category_id = params["category_id"].to_i
+  @product.location_id = params["location_id"].to_i
+  @product.cost = params["cost"].to_i
+  @product.quantity = params["quantity"].to_i
+  @product.save
+  if @product.save
     erb :"/updated_database"
   else
     erb :"/update_product"

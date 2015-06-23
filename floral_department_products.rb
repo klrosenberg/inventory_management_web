@@ -2,7 +2,8 @@ class FloralDepartmentProduct
   extend DatabaseClassMethods
   include DatabaseInstanceMethods
   
-  attr_accessor :id, :product, :category_id, :cost, :location_id, :quantity
+  attr_reader :id
+  attr_accessor :product, :category_id, :cost, :location_id, :quantity
   
   def initialize(options = {})
     @id = options['id']
