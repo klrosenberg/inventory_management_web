@@ -13,7 +13,7 @@
     <a href=/welcome><img src="http://4.bp.blogspot.com/-zpEHnnhl64g/UFrbSRLWxXI/AAAAAAAAAdk/1ZvmkOXN5z0/s1600/VintageFlowerBorder.png" width="600" height="210" /></a>
   </center></h2>
   <h2><center>Please select the location to update or enter a new location name.</center></h2>
-  <form action="/"><center>
+  <form action="/update_location"><center>
     <table>
       <tr>
         <td>Location</td>
@@ -23,8 +23,12 @@
         <td><input type="radio" name="id" value="<%= location.id %>"><%= location.location_name%></td>
       </tr>
     <% end %>
-    <p><input type="text" placeholder="Location name" name="location_name"></p>
+    </table>
     <p><center><input type="submit"></center></p>
-  </form>
+  </center></form>
+  <form action="/add_location"><center>
+    <p><input type="text" placeholder="Location name" name="location_name"></p>
+    <p><input type="submit"></p>
+  </center></form>
 </body>
 </html>

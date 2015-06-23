@@ -12,23 +12,23 @@
   <h2><center>
     <a href=/welcome><img src="http://4.bp.blogspot.com/-zpEHnnhl64g/UFrbSRLWxXI/AAAAAAAAAdk/1ZvmkOXN5z0/s1600/VintageFlowerBorder.png" width="600" height="210" /></a>
   </center></h2>
-  <h2><center>Please select which product you would like to delete.</center></h2>
-  <h3><ul style="list-style-type:none"><center> 
-  <form action="/delete">
-    <table>
+  <h2><center>Please select which product you would like to delete.</center></h2> 
+  <form action="/delete"><center>
+    <table style="width:25%">
       <tr>
-        <td>Product</td>
-        <td>Price</td>
-        <td>Quantity</td>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
       </tr>
-    <% FloralDepartmentProduct.all.each do |product| %>
       <tr>
+    <% FloralDepartmentProduct.all.each do |product| %>
         <td><input type="radio" name="id" value="<%= product.id %>"><%= product.product%></td>
         <td><%= product.cost%></td>
         <td><%= product.quantity%></td>
       </tr>
     <% end %>
+  </table>
     <p><center><input type="submit"></center></p>
-  </form>
+  </center></form>
 </body>
 </html>

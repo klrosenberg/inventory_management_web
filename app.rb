@@ -41,19 +41,46 @@ get "/save" do
     erb :"/updated_database"
   else
     @error = true
-    erb 
+    erb :"/add_product" 
   end
 end
 
 # -----------------------------------------------------------------------------
-# List of existing products to select and edit
+# Save location or return to add update location page.
 # -----------------------------------------------------------------------------
-get "/existing_products" do
-  erb :"/existing_products"
+get "/add_location" do
+  if Location.add({"location_name" => params['location_name']})  
+    erb :"/updated_database"
+  else
+    @error = true
+    erb :"/add_update_location"
+  end
 end
 
 # -----------------------------------------------------------------------------
-# 
+# Save location or return to add update location page.
+# -----------------------------------------------------------------------------
+get "/update_location" do
+  @location = Location.find(params["id"].to_i)
+  erb :"/update_location"
+end
+
+# -----------------------------------------------------------------------------
+# Updates and changed fields and saves to product instance.
+# -----------------------------------------------------------------------------
+get "/update_location/save" do
+  @location = Location.find(params["id"].to_i)
+  @location.location_name = params["location_name"]
+  @location.save
+  if @location.save
+    erb :"/updated_database"
+  else
+    erb :"/update_location"
+  end
+end
+
+# -----------------------------------------------------------------------------
+# Finds product by id and pre-fills in all fields to be optionally changed.
 # -----------------------------------------------------------------------------
 get "/update_product" do
   @product = FloralDepartmentProduct.find(params["id"].to_i)
@@ -61,7 +88,7 @@ get "/update_product" do
 end
 
 # -----------------------------------------------------------------------------
-# 
+# Updates and changed fields and saves to product instance.
 # -----------------------------------------------------------------------------
 get "/update_product/save" do
   @product = FloralDepartmentProduct.find(params["id"].to_i)
@@ -79,7 +106,7 @@ get "/update_product/save" do
 end
 
 # -----------------------------------------------------------------------------
-# 
+# Finds product by id and deletes from record.
 # -----------------------------------------------------------------------------
 get "/delete" do
   @product = FloralDepartmentProduct.find(params["id"].to_i)
@@ -92,7 +119,7 @@ end
 
 
 # -----------------------------------------------------------------------------
-# 
+# Returns erb associated with.
 # -----------------------------------------------------------------------------
 get "/:something" do
   erb :"#{params["something"]}"
