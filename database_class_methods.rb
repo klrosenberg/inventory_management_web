@@ -21,9 +21,7 @@ module DatabaseClassMethods
   # Returns new instance of the class.
   def find(id)
     table_name = self.to_s.tableize
-    query_string = "SELECT * FROM #{table_name} WHERE id = #{id};"
-    binding.pry
-    results = DATABASE.execute(query_string).first
+    results = DATABASE.execute("SELECT * FROM #{table_name} WHERE id = #{id};").first
     self.new(results)
   end
   

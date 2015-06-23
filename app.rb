@@ -41,7 +41,7 @@ get "/save" do
     erb :"/updated_database"
   else
     @error = true
-    erb :"/add_product"
+    erb 
   end
 end
 
@@ -56,6 +56,7 @@ end
 # 
 # -----------------------------------------------------------------------------
 get "/update_product" do
+  @product = FloralDepartmentProduct.find(params["id"].to_i)
   erb :"/update_product"
 end
 
@@ -63,8 +64,7 @@ end
 # 
 # -----------------------------------------------------------------------------
 get "/update_product/save" do
-  @product = FloralDepartmentProduct.find(params["id"].to_i)
-  if @product.save
+  if FloralDepartmentProduct.save
     erb :"/updated_database"
   else
     erb :"/update_product"

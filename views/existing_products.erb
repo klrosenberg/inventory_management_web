@@ -20,12 +20,16 @@
         <td>Product</td>
         <td>Price</td>
         <td>Quantity</td>
+        <td>Category id</td>
+        <td>Location id</td>
       </tr>
       <% FloralDepartmentProduct.all.each do |product| %>
         <tr>
           <td><input type="radio" name="id" value="<%= product.id %>"><%= product.product%></td>
           <td><%= product.cost%></td>
           <td><%= product.quantity%></td>
+          <td><%= product.category_id%></td>
+          <td><%= product.location_id%></td>
         </tr>
       <% end %>
     </table>
