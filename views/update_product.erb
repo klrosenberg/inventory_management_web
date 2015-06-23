@@ -14,6 +14,7 @@
   </center></h2>
   <h2><center>Please change the necessary fields.</center></h2>
   <form action="/update_product/save"><center>
+    <input type="hidden" name="id" value="<%= @product.id %>">
     <p><input type="text" placeholder="Product name" name="product" value="<%= @product.product %>"></p>
     <p><select name="category_id">>
       <% ProductCategory.all.each do |object| %>
